@@ -17,18 +17,11 @@ function copiarTexto() {
   }, 1000);
 }
 
-const audioPlayer = document.getElementById('player');
-
-// Forçar reprodução do áudio quando a página carregar
-window.addEventListener('load', () => {
-  // Tenta reproduzir o áudio imediatamente
-  audioPlayer.play().then(() => {
-    // Quando a reprodução for bem-sucedida, remova o mudo
-    audioPlayer.muted = false;
-    audioPlayer.volume = 0.5; // Ajusta o volume para 50%
-  }).catch(err => {
-    console.log('Erro ao tentar iniciar o áudio:', err);
-    // Exibe uma mensagem caso o áudio não possa ser reproduzido
-    alert('Não foi possível reproduzir o áudio automaticamente. Verifique as configurações do navegador.');
-  });
-});
+  // Espera o áudio carregar e desmuta o áudio depois de 1 segundo, em seguida, dá play
+  window.onload = function() {
+    var audio = document.getElementById('meuAudio');
+    setTimeout(function() {
+      audio.muted = false;  // Desmuta o áudio após 1 segundo
+      audio.play();         // Reproduz o áudio após desmutar
+    }, 1000); // Aguarda 1 segundo
+  };
